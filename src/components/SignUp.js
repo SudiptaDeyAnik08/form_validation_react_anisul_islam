@@ -1,54 +1,68 @@
+import { useFormik } from "formik";
 import React, { useState } from "react";
 
 const SignUp =()=>{
 
-    const [userName,setName] = useState('');
-    const [userEmail,setEmail] = useState('');
-    const [userPassword,setPassword] = useState('');
+    const  formik = useFormik(
+        {
+            initialValues:{
+                userName: "",
+                userEmail:"",
+                userPassword:""
+            },
 
-    const handelNameChange =(e)=>{
-        setName(e.target.value);
-       
-    }
+            onSubmit:(values,{resetForm})=>{
+                console.log(values);
+                resetForm({values:""})
+            }
+        }
+    )
 
-    const handelEmailChange =(e)=>{
-        setEmail(e.target.value);
+
+    // const [userName,setName] = useState('');
+    // const [userEmail,setEmail] = useState('');
+    // const [userPassword,setPassword] = useState('');
+
+    // const handelNameChange =(e)=>{
+    //     setName(e.target.value);
        
-    }
+    // }
+
+    // const handelEmailChange =(e)=>{
+    //     setEmail(e.target.value);
+       
+    // }
 
     
-    const handelPasswordChange =(e)=>{
-        setPassword(e.target.value);
+    // const handelPasswordChange =(e)=>{
+    //     setPassword(e.target.value);
        
-    }
+    // }
+
 
     const handelSubmit = (e)=>{
         e.preventDefault();
-        const newUser = {
-            userName,userEmail,userPassword
-        }
-        console.log(newUser);
-
+      
     }
 
 
     return(
         <div>
             <h1>User SignUp!</h1>
-            <form onSubmit={handelSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                <div>
                     <label htmlFor="userName" >Name: </label>
-                    <input  type="text" id="userName" name="userName" onChange={handelNameChange} value={userName} />
+                    <input  type="text" id="userName" name="userName" onChange={formik.handleChange} value={formik.values.userName} />
                </div>
 
                <div>
                     <label htmlFor="userEmail" >Email: </label>
-                    <input  type="text" id="userEmail" name="userEmail" onChange={handelEmailChange} value={userEmail}/>
+                    <input  type="text" id="userEmail" name="userEmail" onChange={formik.handleChange} value={formik.values.userEmail}/>
                </div>
 
                <div>
                     <label htmlFor="userPassword" >Password: </label>
-                    <input  type="password" id="userPassword" name="userPassword" onChange={handelPasswordChange} value={userPassword} />
+                    <input  type="password" id="userPassword" name="userPassword" onChange={formik.handleChange } value={formik.values.userPassword} />
                </div>
 
                <button type="submit">SignUp</button>
