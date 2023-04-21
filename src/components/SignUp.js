@@ -14,9 +14,10 @@ const SignUp =()=>{
 
 
             validationSchema:yup.object({
-                userName:,
-                userEmail:,
-                userPassword:,
+                userName:yup.string().min(2, "Name Must Contain Atleast 2 charaters").required,
+                userEmail:yup.string().min(2).required,
+                userPassword:yup.string().min(2).required,
+
             })
 
             onSubmit:(values,{resetForm})=>{
