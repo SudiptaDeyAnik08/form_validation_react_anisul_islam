@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import * as yup from "yup"; 
 import React, { useState } from "react";
 
 const SignUp =()=>{
@@ -10,6 +11,13 @@ const SignUp =()=>{
                 userEmail:"",
                 userPassword:""
             },
+
+
+            validationSchema:yup.object({
+                userName:,
+                userEmail:,
+                userPassword:,
+            })
 
             onSubmit:(values,{resetForm})=>{
                 console.log(values);
